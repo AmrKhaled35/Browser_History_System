@@ -8,7 +8,7 @@ class Stack {
         T Item;
         node *Next;
     };
-    node *top;
+    node *top , *curr;
 public:
     Stack() {
         top = NULL;
@@ -37,11 +37,40 @@ public:
             delete temp;
         }
     }
-
+    void getTop (T &item) {
+        if (isEmpty()) {
+            cout << "Stack is Empty" << endl;
+        }
+        else {
+            item = top -> Item;
+        }
+    }
+    void display() {
+        if (isEmpty()) {
+            cout << "Stack is Empty" << endl;
+        }
+        else {
+            curr = top;
+            cout <<" Items on Stack : " << "[";
+            while (curr != NULL) {
+                cout << curr -> Item;
+                if (curr -> Next != NULL) {
+                    cout<< " ";
+                }
+                curr = curr -> Next;
+            }
+            cout << "]" << endl;
+        }
+    }
 };
 
 int main() {
-
-
+    Stack<int>s;
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+    s.display();
     return 0;
 }
