@@ -62,7 +62,7 @@ public:
             cout << "]" << endl;
         }
     }
-    void StackCount () {
+    int StackCount () {
         if (isEmpty()) {
             cout << "Stack is Empty" << endl;
         }
@@ -73,24 +73,35 @@ public:
                 counter++;
                 count = count -> Next;
             }
-            cout  << "Number of elements in Stack : " <<  counter+1 << endl;
+            return counter+1;
         }
     }
 };
 Stack<string>backStack;
-Stack<string>ForwardStack;
+Stack<string>forwardStack;
 string curr = "";
 void visit(string url) {
     if (curr !=  "") {
         backStack.push(curr);
     }
-    while (ForwardStack.isEmpty()) {
-         ForwardStack.pop();
+    while (forwardStack.isEmpty()) {
+         forwardStack.pop();
     }
     curr = url;
     cout << "Visited Url : " << curr << endl;
 }
-
+void goBack() {
+    if (backStack.isEmpty()) {
+        cout << "No previous URL" << endl;
+    }
+    if (backStack.StackCount() > 1) {
+        forwardStack.push(curr);
+    }
+    string c = "";
+    backStack.getTop(c);
+    curr = c ;
+    cout << "Current Url : " << curr << endl;
+}
 
 
 int main() {
