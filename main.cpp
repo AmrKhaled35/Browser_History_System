@@ -63,6 +63,19 @@ public:
         }
     }
 };
+Stack<string>backStack;
+Stack<string>ForwardStack;
+string curr = "";
+void visit(string url) {
+    if (curr !=  "") {
+        backStack.push(curr);
+    }
+    while (ForwardStack.isEmpty()) {
+         ForwardStack.pop();
+    }
+    curr = url;
+    cout << "Visited Url : " << curr << endl;
+}
 
 int main() {
     Stack<int>s;
