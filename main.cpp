@@ -84,7 +84,7 @@ void visit(string url) {
     if (curr !=  "") {
         backStack.push(curr);
     }
-    while (forwardStack.isEmpty()) {
+    while (!forwardStack.isEmpty()) {
          forwardStack.pop();
     }
     curr = url;
@@ -93,26 +93,39 @@ void visit(string url) {
 void goBack() {
     if (backStack.isEmpty()) {
         cout << "No previous URL" << endl;
+        return;
     }
-    if (backStack.StackCount() > 1) {
-        forwardStack.push(curr);
-    }
+    forwardStack.push(curr);
     string c = "";
     backStack.getTop(c);
+    backStack.pop();
+    curr = c ;
+    cout << "Current Url : " << curr << endl;
+}
+void goForward() {
+    if (forwardStack.isEmpty()) {
+        cout << "No forward URL" << endl;
+        return;
+    }
+    backStack.push(curr);
+    string c = "";
+    forwardStack.getTop(c);
+    forwardStack.pop();
     curr = c ;
     cout << "Current Url : " << curr << endl;
 }
 
 
 int main() {
-    Stack<int>s;
-    s.push(10);
-    s.push(20);
-    s.push(30);
-    s.push(40);
-    s.push(50);
-    s.push(60);
-    s.display();
-    s.StackCount();
+    visit("google.com");
+    visit("wikipedia.org");
+    visit("youtube.com");
+    goBack();
+    goBack();
+    goForward();
+    visit("facebook.com");
+    goBack();
+    goForward();
+    goForward();
     return 0;
 }
