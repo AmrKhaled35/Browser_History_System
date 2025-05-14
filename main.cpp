@@ -24,6 +24,19 @@ public:
             top = newNode;
         }
     }
+    bool isEmpty() {
+        return top == NULL;
+    }
+    void pop() {
+        if (isEmpty()) {
+            cout << "Stack IsEmpty" << endl;
+        }else {
+            node *temp = top;
+            top = top -> Next;
+            temp = temp->Next = NULL;
+            delete temp;
+        }
+    }
 
 };
 
