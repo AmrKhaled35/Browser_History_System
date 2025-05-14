@@ -8,7 +8,7 @@ class Stack {
         T Item;
         node *Next;
     };
-    node *top , *curr;
+    node *top , *curr ,*count;
 public:
     Stack() {
         top = NULL;
@@ -62,6 +62,20 @@ public:
             cout << "]" << endl;
         }
     }
+    void StackCount () {
+        if (isEmpty()) {
+            cout << "Stack is Empty" << endl;
+        }
+        else {
+            int counter = 0;
+            count = top;
+            while (count -> Next != NULL) {
+                counter++;
+                count = count -> Next;
+            }
+            cout  << "Number of elements in Stack : " <<  counter+1 << endl;
+        }
+    }
 };
 Stack<string>backStack;
 Stack<string>ForwardStack;
@@ -77,6 +91,8 @@ void visit(string url) {
     cout << "Visited Url : " << curr << endl;
 }
 
+
+
 int main() {
     Stack<int>s;
     s.push(10);
@@ -84,6 +100,8 @@ int main() {
     s.push(30);
     s.push(40);
     s.push(50);
+    s.push(60);
     s.display();
+    s.StackCount();
     return 0;
 }
