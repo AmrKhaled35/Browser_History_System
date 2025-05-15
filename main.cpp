@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 typedef long long ll;
 template<typename T>
@@ -117,15 +118,22 @@ void goForward() {
 
 
 int main() {
-    visit("google.com");
-    visit("wikipedia.org");
-    visit("youtube.com");
-    goBack();
-    goBack();
-    goForward();
-    visit("facebook.com");
-    goBack();
-    goForward();
-    goForward();
+    ifstream file("in.txt");
+    string cm, url;
+    while (file >> cm) {
+        cout << "Input: " << cm;
+        if (cm == "visit") {
+            file >> url;
+            cout << " " << url << endl;
+            visit(url);
+        } else if (cm == "back") {
+            cout << endl;
+            goBack();
+        } else if (cm == "forward") {
+            cout << endl;
+            goForward();
+        }
+        cout << "------------------------" << endl;
+    }
     return 0;
 }
